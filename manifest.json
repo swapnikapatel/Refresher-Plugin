@@ -1,0 +1,31 @@
+{
+    "name": "Refresher Plugin",
+    "version": "1.0",
+    "description": "This helps to auto refesh the refresh button so that the queue is upto date",
+    "permissions": [
+        "activeTab","tabs","storage",
+        "https://q4.lightning.force.com/*"
+    ],
+    "icons": {
+        "16": "icon16a.png"
+    },
+    "content_scripts": [{
+        "matches": [
+            "https://q4.lightning.force.com/*"
+        ],
+        "css": [
+            "global.css"
+        ],
+        "js": [
+            "jquery.min.js"
+        ]
+    }],
+    "browser_action": {
+        "default_icon": {
+            "16": "icon16a.png"
+        },
+        "default_popup": "pop-up.html"
+    },
+ 
+    "manifest_version": 2
+}
