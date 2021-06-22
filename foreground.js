@@ -5,6 +5,6 @@ setInterval(function(){
     console.log("Rereshing");
     // var dt = new Date();
     // var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-    // append.querySelector
+    // append.querySelector()
     
 },60000)
