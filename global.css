@@ -1,4 +1,9 @@
 body{
     width:200px;
-    height: 200px;
+    height: 150px;
+}
+
+button{
+    background-color:#00a1e0;
+    color: white;
 }
