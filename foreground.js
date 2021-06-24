@@ -36,6 +36,7 @@ chrome.storage.local.get((value) => {
     } else if (value.func == "stop") {
         console.log("stop : " + localStorage.getItem("intervalId"))
         clearInterval(localStorage.getItem("intervalId"));
+        $('#refreshTimeCurrent').remove();
     } else {
         chrome.storage.local.clear()
     }
