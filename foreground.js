@@ -17,12 +17,13 @@ chrome.storage.local.get((value) => {
         $('#refreshTimeCurrent').remove();
         var dt = new Date();
         
-        var hours = (dt.getHours() - 12) < 10 ? "0" + (dt.getHours() - 12) : dt.getHours - 12;
+        var hours =  (dt.getHours()) <= 12 ?  (dt.getHours() < 10 ? "0" + dt.getHours() : dt.getHours())
+                    : ((dt.getHours() - 12) < 10 ? "0" + (dt.getHours() - 12) :"");
         var minutes = (dt.getMinutes()) < 10 ? ("0" + dt.getMinutes()) : dt.getMinutes();
         var seconds = (dt.getSeconds()) < 10 ? ("0" + dt.getSeconds()) : dt.getSeconds();
         var daynight = (dt.getHours() <= 12 ? " AM" : " PM");
 
-        var time = hours + " : " + minutes + " : " + seconds + " " + daynight;
+        var time = hours + " : " + minutes + " : " + seconds + "" + daynight;
 
         return "&nbsp;at " + time;
     }

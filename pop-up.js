@@ -1,28 +1,43 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-    var btnstart= document.getElementById("btnstart");
-    var btnstop= document.getElementById("btnstop");
+    var btnstart = document.getElementById("btnstart");
+    var btnstop = document.getElementById("btnstop");
 
-    btnstart.addEventListener('click',fnStart);
-    btnstop.addEventListener('click',fnStop);
+    $("#btnstop").hide();
+
+    btnstart.addEventListener('click', fnStart);
+    btnstop.addEventListener('click', fnStop);
 
 
-    function fnStart(){
+
+    function fnStart() {
+
 
         var refreshTime = document.getElementById("refreshTime").value;
 
-        chrome.storage.local.clear();
-        chrome.storage.local.set({
-            "func": "start",
-            "time": refreshTime
-        });
+        if (refreshTime == "" || null) {
 
-        chrome.tabs.executeScript(null, { file: './foreground.js' });
-        console.log("time set")
+        } else {
+            chrome.storage.local.clear();
+            chrome.storage.local.set({
+                "func": "start",
+                "time": refreshTime
+            });
+
+            chrome.tabs.executeScript(null, { file: './foreground.js' });
+            console.log("time set");
+
+            $("#status").html("")
+            $("#status").html("In progress every " + refreshTime + " seconds");
+            $("#refreshTime").val("")
+            $("#btnstart").hide();
+            $("#btnstop").show();
+        }
+
     };
-    
-    function fnStop(){
-    
+
+    function fnStop() {
+
         chrome.storage.local.clear();
         chrome.storage.local.set({
             "func": "stop",
@@ -31,6 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         chrome.tabs.executeScript(null, { file: './foreground.js' });
         console.log("time stopped")
+
+        $("#status").html("")
+        $("#status").html("Ready");
+        $("#btnstop").hide();
+        $("#btnstart").show();
     };
-    
+
 });

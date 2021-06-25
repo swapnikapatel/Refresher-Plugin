@@ -2,25 +2,27 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SCC options</title>
-    <link href="global.css" rel="stylesheet">
-    <script src="jquery.min.js"></script>
-    <script src="pop-up.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCC options</title>
+  <link href="global.css" rel="stylesheet">
+  <script src="jquery.min.js"></script>
+  <script src="pop-up.js"></script>
 </head>
 
 <body>
 
-    <h3>Refresher Plugin</h3>
-    
-   <div>
-     <input type="text" id="refreshTime" placeholder="Enter seconds here">
-     <br><br>
-       <button id="btnstart">Start</button>
-       <button id="btnstop">Stop</button>
-       
-   </div>
+  <h3>Refresher Plugin</h3>
+
+  <div>
+    <form>
+      <input type="text" id="refreshTime" placeholder="Enter seconds here" required>
+      <br><br>
+      <button id="btnstart">Start</button>
+      <button id="btnstop">Stop</button>
+      <p>Status: <span id="status">Ready</span></p>
+    </form>
+  </div>
 
 </body>
 
