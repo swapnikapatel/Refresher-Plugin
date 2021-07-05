@@ -31,7 +31,7 @@ chrome.storage.local.get((value) => {
     if (value.func == "start") {
         localStorage.setItem("intervalId", setInterval(function () {
             document.querySelector('button[name="refreshButton"]').click();
-            $('.slds-text-body--small').append("<span id='refreshTimeCurrent'>" + displayTime() + "</span>").css('display', 'inline-flex');
+            $('.slds-grid .slds-text-body--small').append("<span id='refreshTimeCurrent'>" + displayTime() + "</span>").css('display', 'inline-flex');
         }, parseInt(value.time * 1000)));
         console.log("start : " + localStorage.getItem("intervalId"))
     } else if (value.func == "stop") {

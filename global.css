@@ -7,3 +7,18 @@ button{
     background-color:#00a1e0;
     color: white;
 }
+
+.buttonStart{
+    background-color:green;
+    color: white;
+}
+
+.buttonStop{
+    background-color:red;
+    color: white;
+}
+
+button:disabled{
+
+    background-color: gray;
+}
