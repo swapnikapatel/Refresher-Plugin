@@ -16,8 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var btnstart = document.getElementById("btnstart");
     var btnstop = document.getElementById("btnstop");
 
+    $("#negativeNumber").hide();
     $("#btnstop").hide();
 
+   
     document.getElementById("refreshTime").addEventListener('input', btnActivity);
     btnstart.addEventListener('click', fnStart);
     btnstop.addEventListener('click', fnStop);
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 console.log(e.target.value)
 
-parseInt(e.target.value) > 0 ? $("#btnstart").removeAttr("disabled") : ""
+parseInt(e.target.value) > 0 ? $("#btnstart").removeAttr("disabled") : $("#btnstart").attr("disabled", "disabled");
 
  }
 
@@ -37,7 +39,13 @@ parseInt(e.target.value) > 0 ? $("#btnstart").removeAttr("disabled") : ""
 
         if (refreshTime == "" || null) {
 
-        } else {
+        } 
+        
+        else if (refreshTime <= 0) {
+            $("#negativeNumber").show();
+                $('#negativeNumber').html("Enter number greater than 0");
+        }
+        else {
             chrome.storage.local.clear();
             chrome.storage.local.set({
                 "func": "start",
@@ -51,6 +59,7 @@ parseInt(e.target.value) > 0 ? $("#btnstart").removeAttr("disabled") : ""
             $("#status").html("In progress every " + refreshTime + " seconds");
             $("#refreshTime").val("")
             $("#btnstart").hide();
+            $("#negativeNumber").hide();
             $("#btnstop").show();
         }
 
@@ -73,5 +82,6 @@ parseInt(e.target.value) > 0 ? $("#btnstart").removeAttr("disabled") : ""
         $("#btnstart").show();
         $("#btnstart").attr("disabled", "disabled");
     };
+
 
 });

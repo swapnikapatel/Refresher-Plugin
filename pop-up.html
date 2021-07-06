@@ -16,9 +16,10 @@
 
   <div>
     <form>
-      <input type="number" id="refreshTime" placeholder="Enter seconds here" required>
+      <input type="number" min="0" id="refreshTime" placeholder="Enter seconds here" required>
       <br><br>
       <button class="buttonStart" type="button" id="btnstart" disabled="disabled">Start</button>
+      <span id="negativeNumber"></span>
       <button class="buttonStop" type="button" id="btnstop">Stop</button>
       <p>Status: <span id="status">Ready</span></p>
     </form>
