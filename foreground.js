@@ -9,6 +9,11 @@ console.log("foreground");
 
 // },60000)
 
+// chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
+//     clearInterval(localStorage.getItem("intervalId"));
+//         $('#refreshTimeCurrent').remove();
+//   });
+
 chrome.storage.local.get((value) => {
     console.log(value);
     // console.log(time)
@@ -31,7 +36,9 @@ chrome.storage.local.get((value) => {
     if (value.func == "start") {
         localStorage.setItem("intervalId", setInterval(function () {
             document.querySelector('button[name="refreshButton"]').click();
-            $('.forceListViewManagerHeader p.slds-text-body--small').append("<span id='refreshTimeCurrent'>" + displayTime() + "</span>").css('display', 'inline-flex');
+            // $('.forceListViewManagerHeader p.slds-text-body--small').append("<span id='refreshTimeCurrent'>" + displayTime() + "</span>").css('display', 'inline-flex');
+
+            $("p > force-list-view-manager-status-info").append("<span id='refreshTimeCurrent'>" + displayTime() + "</span>").css('display', 'inline-flex');
            
         }, parseInt(value.time * 1000)));
         console.log("start : " + localStorage.getItem("intervalId"))

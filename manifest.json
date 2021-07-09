@@ -1,7 +1,7 @@
 {
     "name": "Refresher Plugin",
     "version": "1.0",
-    "description": "This helps to auto refesh the refresh button so that the queue is upto date",
+    "description": "Auto-refresh your queue on a selected interval.",
     "permissions": [
         "activeTab","tabs","storage",
         "https://q4.lightning.force.com/*"
