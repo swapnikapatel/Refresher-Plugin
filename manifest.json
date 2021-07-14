@@ -7,7 +7,10 @@
         "https://q4.lightning.force.com/*"
     ],
     "icons": {
-        "16": "icon16a.png"
+        "16": "icon16a.png",
+        "32": "./icon32a.png",
+        "48": "./icon48a.png",
+        "128": "./icon128a.png"
     },
     "content_scripts": [{
         "matches": [
@@ -22,7 +25,7 @@
     }],
     "browser_action": {
         "default_icon": {
-            "16": "icon16a.png"
+            "16": "./icon16a.png"
         },
         "default_popup": "pop-up.html"
     },
