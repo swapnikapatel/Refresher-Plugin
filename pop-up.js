@@ -1,18 +1,18 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () { //once DOM loaded
 
     var btnstart = document.getElementById("btnstart");
     var btnstop = document.getElementById("btnstop");
 
+    //setting up event listener
     document.getElementById("refreshTime").addEventListener('input', timeValue);
     btnstart.addEventListener('click', fnStart);
     btnstop.addEventListener('click', fnStop);
 
     var localChromeStorage = checkIfLocalStorage();
-
-    if (localChromeStorage.storage === false) {
+    if (localChromeStorage.storage === false) { //no previous data
         $("#negativeNumber").hide();
         $("#btnstop").hide();
-    } else if (localChromeStorage.storage === true) {
+    } else if (localChromeStorage.storage === true) { //setting up previous data
         $("#status").html("")
         $("#status").html("In progress every " + JSON.parse(localChromeStorage.current).time + " seconds");
         $("#refreshTime").val("")
@@ -21,11 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
         $("#refreshTime").attr("disabled", "disabled");
         refreshStart();
     }
-
 })
 
+//checking if user had set time already
 function checkIfLocalStorage() {
-
     var current = localStorage.getItem("currentFunction");
     if (current === null) {
         return { storage: false }
@@ -35,6 +34,7 @@ function checkIfLocalStorage() {
 
 }
 
+//user time value validation
 function timeValue(e) {
     parseInt(e.target.value) > 0 ? (
         $("#btnstart").removeAttr("disabled"),
@@ -43,23 +43,17 @@ function timeValue(e) {
                 $("#negativeNumber").hide()) : ""
     )
         : ($("#btnstart").attr("disabled", "disabled"),
-            $("#negativeNumber").show(),
-            $('#negativeNumber').html("Enter number greater than 0!"));
-
+            $("#negativeNumber").show().html("Enter number greater than 0!"));
 }
 
+//first start call
 function fnStart() {
-
-    chrome.runtime.sendMessage({ greeting: "hello" });
 
     var currentFunction;
     var refreshTime = document.getElementById("refreshTime").value;
 
     if (refreshTime === undefined || "" || null) {
         $('#negativeNumber').html("Time not found");
-    } else if (parseInt(refreshTime) <= 0) {
-        $("#negativeNumber").show();
-        $('#negativeNumber').html("Enter number greater than 0!");
     } else {
 
         currentFunction = JSON.stringify({
@@ -67,6 +61,7 @@ function fnStart() {
             time: refreshTime
         });
 
+        //setting up local storage
         localStorage.setItem("currentFunction", currentFunction);
 
         chrome.storage.local.clear();
@@ -77,8 +72,7 @@ function fnStart() {
 
         chrome.tabs.executeScript(null, { file: './foreground.js' });
 
-        $("#status").html("")
-        $("#status").html("In progress every " + refreshTime + " seconds");
+        $("#status").html("").html("In progress every " + refreshTime + " seconds");
         $("#refreshTime").val("")
         $("#btnstart").hide();
         $("#negativeNumber").hide();
@@ -88,6 +82,7 @@ function fnStart() {
 
 };
 
+//setting earlier data to use after refreshed
 function refreshStart() {
 
     var refreshTime;
@@ -109,8 +104,10 @@ function refreshStart() {
 
 };
 
+//clearing the current session
 function fnStop() {
 
+    //clearing local storage
     localStorage.clear("intervalId")
     chrome.storage.local.clear();
     chrome.storage.local.set({
@@ -119,9 +116,7 @@ function fnStop() {
     });
 
     chrome.tabs.executeScript(null, { file: './foreground.js' });
-
-    $("#status").html("")
-    $("#status").html("Ready");
+    $("#status").html("").html("Ready");
     $("#btnstop").hide();
     $("#btnstart").show();
     $("#btnstart").attr("disabled", "disabled");
