@@ -27,6 +27,7 @@ chrome.storage.local.get((value) => {
                 $("p > force-list-view-manager-status-info").append("<span id='refreshTimeCurrent'>" + displayTime() + "</span>").css('display', 'inline-flex');
                 $('.forceRelatedListDesktop:contains("Files")').find('span#refreshTimeCurrent').remove();
                 $('.forceRelatedListDesktop:contains("Case History")').find('span#refreshTimeCurrent').remove();
+                $('.forceRelatedListDesktop:contains("Cases")').find('span#refreshTimeCurrent').remove();
 
             }, parseInt(value.time * 1000)));
 
