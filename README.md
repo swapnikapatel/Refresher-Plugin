@@ -6,4 +6,4 @@
   It will take the input from user to set desired interval of time and it will refresh the queue automatically.
 
 # Feedback
-  If you have any concern/feedback regarding this extesnsion, please reach out Swapnika Patel.
+  If you have any concern/feedback regarding this extension, please reach out Swapnika Patel.
